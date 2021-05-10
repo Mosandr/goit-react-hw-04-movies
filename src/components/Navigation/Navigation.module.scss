@@ -1,0 +1,25 @@
+.navigation {
+  &List {
+    display: flex;
+    font-weight: bold;
+  }
+
+  &Item:not(:last-child) {
+    margin-right: 15px;
+  }
+}
+
+.navLink {
+  text-decoration: none;
+  transition: color 250ms;
+
+  &Active {
+    color: red;
+  }
+
+  &:hover,
+  &:focus {
+    text-decoration: underline;
+    color: red;
+  }
+}

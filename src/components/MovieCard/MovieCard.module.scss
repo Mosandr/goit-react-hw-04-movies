@@ -1,0 +1,13 @@
+.movieCard {
+  display: flex;
+}
+
+.movieDescription {
+  margin-left: 20px;
+}
+
+.movieImage {
+  width: 280px;
+  height: 400px;
+  object-fit: cover;
+}
