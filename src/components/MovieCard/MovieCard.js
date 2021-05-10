@@ -1,7 +1,7 @@
+import PropTypes from "prop-types";
 import styles from "./MovieCard.module.scss";
 
-const MovieCard = ({ movie }) => {
-  const { title, vote_average, overview, genres, poster_path } = movie;
+const MovieCard = ({ title, vote_average, overview, genres, poster_path }) => {
   const userScore = vote_average * 10;
 
   return (
@@ -35,3 +35,11 @@ const MovieCard = ({ movie }) => {
 };
 
 export default MovieCard;
+
+PropTypes.MovieCard = {
+  title: PropTypes.string.isRequired,
+  vote_average: PropTypes.string.isRequired,
+  overview: PropTypes.string.isRequired,
+  genres: PropTypes.string.isRequired,
+  poster_path: PropTypes.string.isRequired,
+};

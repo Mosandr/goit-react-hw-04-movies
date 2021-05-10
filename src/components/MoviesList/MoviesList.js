@@ -1,14 +1,21 @@
 import PropTypes from "prop-types";
-import { Link } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 import routes from "../../routes";
 
-const MoviesList = ({ movies }) => {
+const MoviesList = ({ movies, location }) => {
   return (
     <ul>
       {movies.map(({ id, title }) => {
         return (
           <li key={id}>
-            <Link to={`${routes.movies}${id}`}>{title}</Link>
+            <Link
+              to={{
+                pathname: `${routes.movies}/${id}`,
+                state: { from: location },
+              }}
+            >
+              {title}
+            </Link>
           </li>
         );
       })}
@@ -16,9 +23,13 @@ const MoviesList = ({ movies }) => {
   );
 };
 
-export default MoviesList;
+export default withRouter(MoviesList);
 
 PropTypes.MoviesList = {
-  id: PropTypes.string.isRequired,
-  title: PropTypes.string.isRequired,
+  movies: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      title: PropTypes.string.isRequired,
+    })
+  ),
 };

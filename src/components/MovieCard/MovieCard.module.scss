@@ -6,8 +6,13 @@
   margin-left: 20px;
 }
 
-.movieImage {
-  width: 280px;
+.movieImageThumb {
   height: 400px;
+}
+
+.movieImage {
+  display: block;
+  width: 280px;
+  height: 100%;
   object-fit: cover;
 }

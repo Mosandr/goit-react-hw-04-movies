@@ -1,5 +1,6 @@
 import { Component } from "react";
 import api from "../utils/apiService";
+import QueryString from "query-string";
 
 import Container from "../components/Container";
 import MoviesList from "../components/MoviesList";
@@ -11,6 +12,12 @@ class MoviesPage extends Component {
     movies: [],
     error: "",
   };
+
+  componentDidMount() {
+    const { location } = this.props;
+    const query = QueryString.parse(location.search).query;
+    query && this.setState({ query });
+  }
 
   componentDidUpdate(prevProps, prevState) {
     const prevQuery = prevState.query;
@@ -34,6 +41,7 @@ class MoviesPage extends Component {
 
   onSearchSubmit = (query) => {
     this.setState({ query });
+    this.props.history.push({ search: `query=${query}` });
   };
 
   render() {

@@ -6,6 +6,7 @@ import Container from "../components/Container";
 import MovieCard from "../components/MovieCard";
 import Cast from "../components/Cast";
 import Reviews from "../components/Reviews";
+import routes from "../routes";
 
 class MovieDetailsPage extends Component {
   state = { movie: {} };
@@ -23,14 +24,40 @@ class MovieDetailsPage extends Component {
       .catch((error) => console.log(error));
   }
 
+  handleGoBack = () => {
+    const { location, history } = this.props;
+
+    history.push(
+      location?.state?.from
+        ? location.state.from.pathname + location.state.from.search
+        : routes.home
+    );
+  };
+
   render() {
-    const { movie } = this.state;
+    const {
+      title,
+      vote_average,
+      overview,
+      genres,
+      poster_path,
+    } = this.state.movie;
+
     const { match } = this.props;
     const { url, path } = match;
 
     return (
       <Container>
-        <MovieCard movie={movie} />
+        <button type="button" onClick={this.handleGoBack}>
+          &#8592; Go back
+        </button>
+        <MovieCard
+          title={title}
+          vote_average={vote_average}
+          overview={overview}
+          genres={genres}
+          poster_path={poster_path}
+        />
         <p>Additional information</p>
         <ul>
           <li>
