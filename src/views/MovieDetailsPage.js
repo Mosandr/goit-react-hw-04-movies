@@ -43,7 +43,7 @@ class MovieDetailsPage extends Component {
       poster_path,
     } = this.state.movie;
 
-    const { match } = this.props;
+    const { match, location } = this.props;
     const { url, path } = match;
 
     return (
@@ -61,10 +61,24 @@ class MovieDetailsPage extends Component {
         <p>Additional information</p>
         <ul>
           <li>
-            <Link to={`${url}/cast`}>Cast</Link>
+            <Link
+              to={{
+                pathname: `${url}/cast`,
+                state: { from: location.state.from },
+              }}
+            >
+              Cast
+            </Link>
           </li>
           <li>
-            <Link to={`${url}/reviews`}>Reviews</Link>
+            <Link
+              to={{
+                pathname: `${url}/reviews`,
+                state: { from: location.state.from },
+              }}
+            >
+              Reviews
+            </Link>
           </li>
         </ul>
         <Route path={`${path}/cast`} component={Cast} />
